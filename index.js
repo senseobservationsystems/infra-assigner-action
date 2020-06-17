@@ -262,7 +262,7 @@ async function run() {
         owner: 'senseobservationsystems',
         repo: 'infrastructure',
         issue_number: github.context.payload.issue.number,
-        assigness: assignee
+        assignees: [assignee]
     });
 }
 
