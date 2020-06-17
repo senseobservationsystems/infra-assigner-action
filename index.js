@@ -254,7 +254,7 @@ async function run() {
     octokit.issues.createComment({
         owner: 'senseobservationsystems',
         repo: 'infrastructure',
-        issue_number: 673,
+        issue_number: github.context.payload.issue,
         body: body
     });            
 }
