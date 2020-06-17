@@ -239,11 +239,7 @@ async function getAssignee() {
     return {assignee: leastProblemMember, reason: "Assigned to least number of problems"};
 }
 
-try {
-    const token = core.getInput('token');
-    
-    const octokit = new github.GitHub(token);
-
+async function run() {
     let {assignee, reason} = await getAssignee();
     const body = "Recommended Assignee: @" + assignee + "\nReason: " + reason;
     console.log(body);
@@ -252,7 +248,14 @@ try {
         repo: 'infrastructure',
         issue_number: 673,
         body: body
-    });        
+    });            
+}
+
+try {
+    const token = core.getInput('token');
+    
+    const octokit = new github.GitHub(token);
+    run();
 
 } catch (error) {
   core.setFailed(error.message);
