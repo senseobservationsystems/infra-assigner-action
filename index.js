@@ -254,7 +254,7 @@ async function run() {
 try {
     const token = core.getInput('token');
     
-    const octokit = new github.GitHub(token);
+    const octokit = github.getOctokit(token);
     run();
 
 } catch (error) {
