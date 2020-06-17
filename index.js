@@ -256,7 +256,14 @@ async function run() {
         repo: 'infrastructure',
         issue_number: github.context.payload.issue.number,
         body: body
-    });            
+    });
+
+    octokit.issues.addAssignees({
+        owner: 'senseobservationsystems',
+        repo: 'infrastructure',
+        issue_number: github.context.payload.issue.number,
+        assigness: assignee
+    });
 }
 
 run();
