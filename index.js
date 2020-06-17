@@ -44,6 +44,10 @@ function checkExperts(labels) {
 
 async function checkRelatedProblem(issue) {
 
+    const token = core.getInput('token');
+    
+    const octokit = github.getOctokit(token);
+
     let labels = getLabel(issue);
     let related_problems = [];
     
@@ -68,6 +72,10 @@ async function checkRelatedProblem(issue) {
 }
 
 async function checkCurrentLoadForUser(user) {
+
+    const token = core.getInput('token');
+    
+    const octokit = github.getOctokit(token);
 
     let retval = {
         total: 0,
@@ -140,11 +148,6 @@ function getMemberWithLeastProblem(teamLoad) {
 
 async function getAssignee() {
     console.log("Start");
-    // const {data: issue} = await octokit.issues.get({
-    //     owner: 'senseobservationsystems',
-    //     repo: 'infrastructure',
-    //     issue_number: 673
-    // });
 
     const issue = github.context.payload.issue;
 
@@ -243,6 +246,11 @@ async function run() {
     let {assignee, reason} = await getAssignee();
     const body = "Recommended Assignee: @" + assignee + "\nReason: " + reason;
     console.log(body);
+
+    const token = core.getInput('token');
+    
+    const octokit = github.getOctokit(token);
+
     octokit.issues.createComment({
         owner: 'senseobservationsystems',
         repo: 'infrastructure',
@@ -251,14 +259,4 @@ async function run() {
     });            
 }
 
-try {
-    const token = core.getInput('token');
-    
-    const octokit = github.getOctokit(token);
-    run();
-
-} catch (error) {
-  core.setFailed(error.message);
-}
-
-
+run();
