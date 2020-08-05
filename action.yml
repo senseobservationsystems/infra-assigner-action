@@ -7,7 +7,6 @@ inputs:
 outputs:
   time:
     description: 'count'
-    default: 0
 runs:
   using: 'node12'
   main: 'index.js'
