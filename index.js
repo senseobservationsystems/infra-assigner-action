@@ -161,8 +161,7 @@ async function getAssignee() {
         orhan89: "P1",
         ridwanbejo: "P1",
         maulanasly: "P1",
-        "rheza-sense": "P1",
-        jeffryadityatama: "P4"
+        "rheza-sense": "P1"
     }
 
     const eligible_engineer = Object.keys(teamMembers).filter(function(member){
